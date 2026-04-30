@@ -1,0 +1,120 @@
+:root {
+  --primary-color: #8e44ad;
+  --secondary-color: #9b59b6;
+  --danger-color: #e74c3c;
+  --bg-color: #f5f6fa;
+  --text-color: #2f3640;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  border-radius: 20px;
+}
+
+.navbar {
+  background: #2c3e50;
+  color: white;
+  padding: 1.2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links button {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 24px;
+  margin-left: 15px;
+  cursor: pointer;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.nav-links button:hover {
+  background: white;
+  color: var(--primary-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+}
+
+th, td {
+  padding: 20px;
+  text-align: left;
+  border-bottom: 1px solid #f1f2f6;
+}
+
+th {
+  background-color: #f9f9f9;
+  color: #a4b0be;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: var(--primary-color);
+  color: white;
+  margin-right: 10px;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.btn-delete {
+  background-color: var(--danger-color);
+}
+
+.btn-cancel {
+  background-color: #dcdde1;
+  color: #2f3640;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #57606f;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #f1f2f6;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  background: #fafafa;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
