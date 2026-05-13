@@ -70,3 +70,4 @@ A scalable e-commerce inventory solution designed for cloud-native deployment. T
 
 ---
 *Developed for Academic Practical Examination - Cloud Computing & LP2.*
+ 

@@ -70,3 +70,4 @@ A productivity-focused task orchestration platform. This application demonstrate
 
 ---
 *Developed for Academic Practical Examination - Cloud Computing & LP2.*
+ 

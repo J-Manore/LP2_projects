@@ -45,3 +45,4 @@ If you have Nginx installed locally (Linux/WSL):
 
 ---
 *Developed for Academic Practical Examination - Cloud Computing & LP2.*
+ 

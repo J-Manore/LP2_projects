@@ -70,3 +70,4 @@ An event management and registration portal for high-traffic cloud environments.
 
 ---
 *Developed for Academic Practical Examination - Cloud Computing & LP2.*
+ 

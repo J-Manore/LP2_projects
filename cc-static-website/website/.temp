@@ -146,3 +146,4 @@ http://<public-ip>
 ## 🔥 Viva Boost Answer
 
 > “During deployment, initial errors included missing web root and permission issues causing 403 Forbidden. These were resolved by recreating the directory, correcting file placement, and setting appropriate permissions using chmod and chown.”
+ 
