@@ -8,48 +8,37 @@
     <style>
         body {
             font-family: Arial;
-            background: whitesmoke;
             margin: 0;
+            background: whitesmoke;
+            padding: 20px;
         }
 
         header {
             background: teal;
             color: white;
             text-align: center;
-            padding: 15px;
-        }
-
-        .container {
-            width: 60%;
-            margin: 20px auto;
-        }
-
-        .box {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid lightgray;
+            padding: 10px;
         }
 
         h2 {
             color: teal;
         }
 
-        input {
-            width: 70%;
-            padding: 8px;
+        section {
+            background: white;
+            border: 1px solid lightgray;
+            padding: 10px;
+            margin-bottom: 15px;
         }
 
         button {
-            padding: 8px 12px;
             background: teal;
             color: white;
             border: none;
-            cursor: pointer;
+            padding: 5px 10px;
         }
 
         #result {
-            margin-top: 15px;
             color: green;
             font-weight: bold;
         }
@@ -63,71 +52,51 @@
 
         <h1>Hospital Expert System</h1>
 
-        <p>AI Based Symptom Checking System</p>
+        <p>AI Based Symptom Checker</p>
 
     </header>
 
-    <div class="container">
 
-        <div class="box">
+    <section>
 
-            <h2>About System</h2>
+        <h2>Knowledge Base</h2>
 
-            <p>
-                This expert system helps users identify possible health conditions
-                based on symptoms entered by the user.
-            </p>
+        <ul>
+            <li>Fever → Infection</li>
+            <li>Cough → Cold</li>
+            <li>Headache → Stress</li>
+            <li>Chest Pain → Emergency</li>
+            <li>Stomach Pain → Digestion Problem</li>
+        </ul>
 
-            <p>
-                The system uses a knowledge base and inference engine
-                to provide suggestions.
-            </p>
+    </section>
 
-        </div>
 
-        <div class="box">
+    <section>
 
-            <h2>Knowledge Base</h2>
+        <h2>Inference Engine</h2>
 
-            <ul>
-                <li>Fever → Infection</li>
-                <li>Cough → Cold</li>
-                <li>Headache → Stress or Fatigue</li>
-                <li>Chest Pain → Emergency Condition</li>
-                <li>Stomach Pain → Digestion Problem</li>
-            </ul>
+        <p>
+            Matches user symptoms with rules from the knowledge base.
+        </p>
 
-        </div>
+    </section>
 
-        <div class="box">
 
-            <h2>Inference Engine</h2>
+    <section>
 
-            <p>
-                The inference engine compares the user symptoms
-                with rules stored in the knowledge base
-                and generates conclusions.
-            </p>
+        <h2>Check Symptoms</h2>
 
-        </div>
+        <input type="text" id="symptom" placeholder="Enter symptom">
 
-        <div class="box">
+        <button onclick="diagnose()">
+            Check
+        </button>
 
-            <h2>Check Symptoms</h2>
+        <p id="result"></p>
 
-            <p>Enter your symptom:</p>
+    </section>
 
-            <input type="text" id="symptom" placeholder="e.g fever, cough">
-
-            <button onclick="diagnose()">
-                Check
-            </button>
-
-            <p id="result"></p>
-
-        </div>
-
-    </div>
 
     <script>
 
@@ -137,20 +106,21 @@
         const knowledgeBase = {
 
             fever:
-                "Possible Infection. Take rest and consult doctor.",
+                "Possible Infection. Consult doctor.",
 
             cough:
                 "Possible Cold. Drink warm fluids.",
 
             headache:
-                "Stress or fatigue detected. Take proper rest.",
+                "Take proper rest.",
 
             "chest pain":
                 "Emergency! Visit hospital immediately.",
 
             stomach:
-                "Possible digestion issue. Avoid oily food."
+                "Possible digestion problem."
         };
+
 
 
 
@@ -164,10 +134,8 @@
                     .toLowerCase();
 
             let output =
-                "No matching rule found. Please consult doctor.";
+                "No matching rule found.";
 
-
-            // RULE MATCHING
 
             for (let symptom in knowledgeBase) {
 
