@@ -1,0 +1,129 @@
+public class StudentConsoleDemo {
+
+    public static void menu(
+
+        Integer choice,
+        String name,
+        Integer rollNo,
+        String studentClass,
+        String mobileNo
+    ){
+
+        // CREATE
+        if(choice == 1){
+
+            StudentPractice__c s = new StudentPractice__c();
+
+            s.StudentPracticeName__c = name;
+
+            s.StudentPracticeRoll_No__c = rollNo;
+
+            s.StudentPracticeClass__c = studentClass;
+
+            s.StudentPracticeMobile_No__c = mobileNo;
+
+            insert s;
+
+            System.debug('Student Inserted Successfully');
+        }
+
+        // READ
+        else if(choice == 2){
+
+            List<StudentPractice__c> studentList = [
+
+                SELECT StudentPracticeName__c,
+                       StudentPracticeRoll_No__c,
+                       StudentPracticeClass__c,
+                       StudentPracticeMobile_No__c
+
+                FROM StudentPractice__c
+            ];
+
+            System.debug('--- Student Records ---');
+
+            for(StudentPractice__c s : studentList){
+
+                System.debug(
+
+                    s.StudentPracticeName__c + ' | ' +
+
+                    s.StudentPracticeRoll_No__c + ' | ' +
+
+                    s.StudentPracticeClass__c + ' | ' +
+
+                    s.StudentPracticeMobile_No__c
+                );
+            }
+        }
+
+        // UPDATE
+        else if(choice == 3){
+
+            StudentPractice__c s = [
+
+                SELECT Id,
+                       StudentPracticeClass__c,
+                       StudentPracticeMobile_No__c
+
+                FROM StudentPractice__c
+
+                WHERE StudentPracticeRoll_No__c = :rollNo
+
+                LIMIT 1
+            ];
+
+            if(studentClass != null){
+
+                s.StudentPracticeClass__c = studentClass;
+            }
+
+            if(mobileNo != null){
+
+                s.StudentPracticeMobile_No__c = mobileNo;
+            }
+
+            update s;
+
+            System.debug('Student Updated Successfully');
+        }
+
+        // DELETE
+        else if(choice == 4){
+
+            StudentPractice__c s = [
+
+                SELECT Id
+
+                FROM StudentPractice__c
+
+                WHERE StudentPracticeRoll_No__c = :rollNo
+
+                LIMIT 1
+            ];
+
+            delete s;
+
+            System.debug('Student Deleted Successfully');
+        }
+
+        // INVALID
+        else{
+
+            System.debug(
+                'Invalid Choice. Use 1=Add 2=View 3=Update 4=Delete'
+            );
+        }
+    }
+}
+
+
+/*
+StudentConsoleDemo.menu(
+    1,
+    'JM',
+    101,
+    'TE COMP',
+    '9876543210'
+);
+*/

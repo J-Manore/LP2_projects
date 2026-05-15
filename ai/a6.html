@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Hospital Expert System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: whitesmoke;
+            margin: 0;
+        }
+
+        header {
+            background: teal;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 20px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid lightgray;
+        }
+
+        h2 {
+            color: teal;
+        }
+
+        input {
+            width: 70%;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background: teal;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Hospital Expert System</h1>
+
+        <p>AI Based Symptom Checking System</p>
+
+    </header>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h2>About System</h2>
+
+            <p>
+                This expert system helps users identify possible health conditions
+                based on symptoms entered by the user.
+            </p>
+
+            <p>
+                The system uses a knowledge base and inference engine
+                to provide suggestions.
+            </p>
+
+        </div>
+
+        <div class="box">
+
+            <h2>Knowledge Base</h2>
+
+            <ul>
+                <li>Fever → Infection</li>
+                <li>Cough → Cold</li>
+                <li>Headache → Stress or Fatigue</li>
+                <li>Chest Pain → Emergency Condition</li>
+                <li>Stomach Pain → Digestion Problem</li>
+            </ul>
+
+        </div>
+
+        <div class="box">
+
+            <h2>Inference Engine</h2>
+
+            <p>
+                The inference engine compares the user symptoms
+                with rules stored in the knowledge base
+                and generates conclusions.
+            </p>
+
+        </div>
+
+        <div class="box">
+
+            <h2>Check Symptoms</h2>
+
+            <p>Enter your symptom:</p>
+
+            <input type="text" id="symptom" placeholder="e.g fever, cough">
+
+            <button onclick="diagnose()">
+                Check
+            </button>
+
+            <p id="result"></p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+
+        // KNOWLEDGE BASE
+
+        const knowledgeBase = {
+
+            fever:
+                "Possible Infection. Take rest and consult doctor.",
+
+            cough:
+                "Possible Cold. Drink warm fluids.",
+
+            headache:
+                "Stress or fatigue detected. Take proper rest.",
+
+            "chest pain":
+                "Emergency! Visit hospital immediately.",
+
+            stomach:
+                "Possible digestion issue. Avoid oily food."
+        };
+
+
+
+        // INFERENCE ENGINE
+
+        function diagnose() {
+
+            let input =
+                document.getElementById("symptom")
+                    .value
+                    .toLowerCase();
+
+            let output =
+                "No matching rule found. Please consult doctor.";
+
+
+            // RULE MATCHING
+
+            for (let symptom in knowledgeBase) {
+
+                if (input.includes(symptom)) {
+
+                    output = knowledgeBase[symptom];
+
+                    break;
+                }
+            }
+
+            document.getElementById("result").innerText = output;
+        }
+
+    </script>
+
+</body>
+
+</html>

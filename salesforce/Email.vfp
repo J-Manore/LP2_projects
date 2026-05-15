@@ -1,0 +1,19 @@
+<apex:page controller="email">
+
+    <h2>Send Email with Attachment</h2>
+
+    <apex:form enctype="multipart/form-data">
+       
+        <apex:pageMessages />
+
+        <apex:inputText value="{!toEmail}" label="Recipient Email"/>
+
+        <apex:inputFile value="{!fileBody}" filename="{!fileName}"/>
+
+        <br/><br/>
+
+        <apex:commandButton value="Send Email" action="{!sendEmail}"/>
+
+    </apex:form>
+
+</apex:page>

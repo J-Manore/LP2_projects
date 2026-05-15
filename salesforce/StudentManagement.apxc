@@ -1,0 +1,39 @@
+public class StudentManagement {
+    public Student__c student {get;set;}
+    public List<Student__c> studentList {get; set;}
+   
+    public StudentManagement(){
+        student = new Student__c();
+        loadStudents();
+    }
+   
+    void loadStudents(){
+        studentList = [SELECT Id, Name__c, Roll_no__c, Marks__c,Email__c FROM Student__c ORDER BY Roll_no__c];
+    }
+   
+    public void saveStudent(){
+        insert student;
+        student = new Student__c();
+        loadStudents();
+        System.debug('Student added successfully');
+    }
+   
+    public static List<Student__c> displayStudent(){
+        return [
+            SELECT Id, Name__c, Roll_no__c, Marks__c, Email__c
+            FROM Student__c
+            ORDER BY Roll_no__c
+        ];
+    }
+   
+    public void deleteStudent(){
+        try{
+            Student__c s = [SELECT Id FROM Student__c WHERE Id = :student.Id];
+            delete s;
+            System.debug('Student deleted successfully!');
+            loadStudents();
+        } catch (Exception e){
+            System.debug('Error deleting student: ' + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,33 @@
+public class email {
+    public Blob fileBody {get; set;}
+    public String fileName {get; set;}
+    public String toEmail {get; set;}
+
+    public void sendEmail() {
+
+        if(toEmail == null || !toEmail.contains('@')){
+            ApexPages.addMessage(
+                new ApexPages.Message(ApexPages.Severity.ERROR, 'Invalid Email')
+            );
+            return;
+        }
+
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+        mail.setToAddresses(new String[] {toEmail});
+        mail.setSubject('File Attachment');
+        mail.setPlainTextBody('Please find attached file.');
+
+        Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+        attachment.setFileName(fileName);
+        attachment.setBody(fileBody);
+
+        mail.setFileAttachments(new Messaging.EmailFileAttachment[] {attachment});
+
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
+
+        ApexPages.addMessage(
+            new ApexPages.Message(ApexPages.Severity.CONFIRM, 'Email Sent Successfully')
+        );
+    }
+}

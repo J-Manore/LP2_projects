@@ -1,0 +1,42 @@
+public class EmployeeManagement {
+    public Employee__c Employee {get; set;}
+    public List<Employee__c> employeeList {get; set;}
+    
+    public EmployeeManagement() {
+        Employee = new Employee__c();
+        loadEmployee();
+    }
+    
+    public void loadEmployee() {
+        employeeList = [SELECT Employee_ID__c, Employee_Name__c, Employee_Email__c, 
+                        Employee_Salary__c, Employee_Department__c, Employee_JoiningDate__c 
+                        FROM Employee__c ORDER BY Employee_ID__c];
+    }
+    
+    public void saveEmployee(){
+        try {
+            insert Employee;
+            Employee = new Employee__c();
+            loadEmployee();
+        } catch(Exception ex) {
+            ApexPages.addMessages(ex);
+        }
+    }
+
+    public void deleteEmployee(){
+    try {
+        String rawId = ApexPages.currentPage().getParameters().get('Employee_ID__c');
+        
+        if(rawId != null && rawId != '') {
+            Decimal empIdDecimal = Decimal.valueOf(rawId);
+            
+            Employee__c e = [SELECT Id FROM Employee__c WHERE Employee_ID__c = :empIdDecimal LIMIT 1];
+            
+            delete e;
+            loadEmployee();
+        }
+    } catch (Exception e) {
+        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Error deleting: ' + e.getMessage()));
+    }
+}
+}

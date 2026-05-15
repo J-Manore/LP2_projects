@@ -1,0 +1,29 @@
+<apex:page controller="EmployeeManagement">
+    <apex:sectionHeader title="Employee Management" subtitle="Record System"/>
+    <apex:pageMessages /> <apex:form >
+        <apex:pageBlock title="Add Employee">
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!Employee.Employee_ID__c}"/>
+                <apex:inputField value="{!Employee.Employee_Name__c}"/>
+                <apex:inputField value="{!Employee.Employee_Email__c}"/>
+                <apex:inputField value="{!Employee.Employee_Department__c}"/> 
+                <apex:inputField value="{!Employee.Employee_JoiningDate__c}"/>
+                
+                <apex:commandButton value="Add Employee" action="{!saveEmployee}" reRender="EmployeeTable, msg"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+        <apex:pageBlock title="Employee List" id="EmployeeTable">
+            <apex:pageBlockTable value="{!employeeList}" var="e">
+                <apex:column value="{!e.Employee_ID__c}"/>
+                <apex:column value="{!e.Employee_Name__c}"/>
+                <apex:column value="{!e.Employee_Department__c}"/>
+                <apex:column headerValue="Action">
+                    <apex:commandButton value="Delete" action="{!deleteEmployee}" reRender="EmployeeTable">
+                        <apex:param name="empId" value="{!e.Employee_ID__c}" assignTo="{!Employee.Employee_ID__c}"/>
+                    </apex:commandButton>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

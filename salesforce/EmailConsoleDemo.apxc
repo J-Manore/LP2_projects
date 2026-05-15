@@ -1,0 +1,32 @@
+public class EmailConsoleDemo {
+
+    public static void sendSimpleEmail() {
+
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+        mail.setToAddresses(new String[] {'jjmanore@gmail.com'});
+        mail.setSubject('Test Email from Apex');
+        mail.setPlainTextBody('Hello, this is test email');
+
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+
+        System.debug('Email sent successfully');
+    }
+    
+    public static void sendEmailWithAttachment() {
+
+    Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+    attachment.setFileName('test.txt');
+    attachment.setBody(Blob.valueOf('Sample file content'));
+
+    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+    mail.setToAddresses(new String[] {'jjmanore@gmail.com'});
+    mail.setSubject('Email with Attachment');
+    mail.setPlainTextBody('Check attachment');
+    mail.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
+
+    Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+
+    System.debug('Email with attachment sent');
+}
+}
